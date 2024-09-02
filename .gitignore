@@ -1,2 +1,5 @@
 data
 pth
+*.pyc
+tensorboard
+*.pth
