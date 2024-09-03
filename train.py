@@ -34,7 +34,7 @@ if dataset == 'imagenet100':
         transform=transform
     )
 
-    train_loader = torch.utils.data.DataLoader(train_set, batch_size=96, shuffle=True)
+    train_loader = torch.utils.data.DataLoader(train_set, batch_size=128, shuffle=True)
     test_loader = torch.utils.data.DataLoader(test_set, batch_size=64, shuffle=False)
 
 # Prepare Model
@@ -73,7 +73,7 @@ tlib.train_ch3_plus(
     tensorboard_path='./tensorboard',
     logger=logger,
     checkpoint_manager=checkpoint_manager,
-    test_freq=2,
+    test_freq=1,
     train_batch_log= True,
     test_batch_log= True,
     batch_tensorboard= True
