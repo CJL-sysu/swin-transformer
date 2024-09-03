@@ -6,8 +6,8 @@ import torchvision.transforms as transforms
 from imagenet_loader import imagenet_dataset
 
 # config
-arch = 'resnet18'
-# arch = "swin_v2_t"
+# arch = 'resnet18'
+arch = "swin_v2_t"
 dataset = 'imagenet100'
 logger = tlib.Logger(output='stdout')
 # Select Device
@@ -33,7 +33,7 @@ if dataset == 'imagenet100':
         transform=transform
     )
 
-    train_loader = torch.utils.data.DataLoader(train_set, batch_size=400, shuffle=True)
+    train_loader = torch.utils.data.DataLoader(train_set, batch_size=96, shuffle=True)
     test_loader = torch.utils.data.DataLoader(test_set, batch_size=64, shuffle=False)
 
 # Prepare Model
@@ -49,7 +49,7 @@ def prepare_model(model_name, num_class):
     return base_model
 
 model = prepare_model(arch, 100).to(device)
-
+logger.trace(model)
 # Train Model
 loss = torch.nn.CrossEntropyLoss(reduction='none').to(device)
 num_epochs = 1000
