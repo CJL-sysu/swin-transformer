@@ -10,6 +10,7 @@ from imagenet_loader import imagenet_dataset
 arch = "swin_v2_t"
 dataset = 'imagenet100'
 logger = tlib.Logger(output='stdout')
+pretrained = False
 # Select Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Prepare Dataset
@@ -38,7 +39,7 @@ if dataset == 'imagenet100':
 
 # Prepare Model
 def prepare_model(model_name, num_class):
-    base_model = getattr(torchvision.models, model_name)(pretrained=True)
+    base_model = getattr(torchvision.models, model_name)(pretrained=pretrained)
     if 'resnet' in model_name:
         feature_dim = getattr(base_model, 'fc').in_features
         setattr(base_model, "fc", nn.Linear(feature_dim, num_class))
